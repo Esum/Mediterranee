@@ -4,7 +4,7 @@ public class Villes
 {
 	public static Ville[] villesList =
 	{
-		new Ville("Venise", EnumMarchandise.VIN)
+		new Ville(0, "Venise", EnumMarchandise.VIN)
 		/*
 		new Case(0, 0, new int[] {4}),
 		new Case(1, 1, new int[] {5, 6, 7}),

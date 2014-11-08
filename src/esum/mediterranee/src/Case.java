@@ -4,9 +4,16 @@ import java.util.ArrayList;
 
 public class Case
 {
+	/** Identifiant associé à la case */
 	private int id;
+
+	/** Identifiant associé à la ville de la case */
 	private int villeId;
+
+	/** Cases adjacentes à la case */
 	private ArrayList<Integer> casesAdjacentes = new ArrayList<Integer>();
+
+	/** Galeres sur la case */
 	private ArrayList<Galere> galeres;
 
 	Case(int id, int villeId, int[] casesAdjacentes)

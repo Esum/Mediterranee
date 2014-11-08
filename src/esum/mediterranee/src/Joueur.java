@@ -5,10 +5,10 @@ import java.util.ArrayList;
 public class Joueur
 {
 	/** La civilisation du joueur */
-	private final EnumCivilisation civilisation;
+	private EnumCivilisation civilisation;
 
 	/** Le nom du joueur */
-	private final String nom;
+	private String nom;
 
 	/** Joueurs */
 	private ArrayList<Joueur> joueurs = new ArrayList<Joueur>();

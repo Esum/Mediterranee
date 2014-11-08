@@ -7,11 +7,14 @@ public class Ville implements IPionConteneur
 	/** Civilisation contrôlant la ville */
 	private EnumCivilisation civilisation;
 
+	/** Identifiant associé à la ville */
+	private int id;
+
 	/** Nom de la ville */
-	private final String nom;
+	private String nom;
 
 	/** Type de marchandise produit */
-	private final EnumMarchandise marchandiseProduite;
+	private EnumMarchandise marchandiseProduite;
 
 	/** Marchandises dans la ville */
 	private ArrayList<Marchandise> marchandises = new ArrayList<Marchandise>();
@@ -19,8 +22,9 @@ public class Ville implements IPionConteneur
 	/** Marins dans la ville */
 	private ArrayList<Marin> marins = new ArrayList<Marin>(); 
 
-	Ville(String nom, EnumMarchandise marchandiseProduite)
+	Ville(int id, String nom, EnumMarchandise marchandiseProduite)
 	{
+		this.id = id;
 		this.nom = nom;
 		this.marchandiseProduite = marchandiseProduite;
 	}
