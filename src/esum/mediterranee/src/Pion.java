@@ -13,6 +13,6 @@ public class Pion
 	/** Déplace le pion */
 	public boolean deplacer(Object from, Object to)
 	{
-		return (((IPionContainer) from).contientPion(this) ? ((IPionContainer) to).ajouterPion(this) : false) ? ((IPionContainer) from).enleverPion(this) : false;
+		return (((IPionConteneur) from).contientPion(this) ? ((IPionConteneur) to).ajouterPion(this) : false) ? ((IPionConteneur) from).enleverPion(this) : false;
 	}
 }

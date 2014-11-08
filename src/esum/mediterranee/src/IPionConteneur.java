@@ -1,6 +1,6 @@
 package esum.mediterranee.src;
 
-public interface IPionContainer
+public interface IPionConteneur
 {
 	public boolean peutRecevoirPion();
 	public boolean ajouterPion(Pion pion);

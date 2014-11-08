@@ -2,7 +2,7 @@ package esum.mediterranee.src;
 
 import java.util.ArrayList;
 
-public class Galere implements IPionContainer
+public class Galere implements IPionConteneur
 {
 	/** Civilisation qui contrôle la galère */
 	private EnumCivilisation civilisation;
