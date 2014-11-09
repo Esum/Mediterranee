@@ -1,11 +1,8 @@
 package esum.mediterranee.src;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-
 public class Cases
 {
+	/** Liste des cases */
 	public static Case[] casesList =
 	{
 		new Case(0, 0, new int[] {4}),

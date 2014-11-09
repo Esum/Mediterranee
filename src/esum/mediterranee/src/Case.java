@@ -14,7 +14,7 @@ public class Case
 	private ArrayList<Integer> casesAdjacentes = new ArrayList<Integer>();
 
 	/** Galeres sur la case */
-	private ArrayList<Galere> galeres;
+	private ArrayList<Galere> galeres = new ArrayList<Galere>();
 
 	Case(int id, int villeId, int[] casesAdjacentes)
 	{
@@ -30,19 +30,25 @@ public class Case
 		return this.id;
 	}
 
+	/** Renvoie l'identifiant de la ville sur la case */
+	public int getVilleId()
+	{
+		return this.getVilleId();
+	}
+
 	/** Renvoie true si les cases sont adjacentes */
 	public boolean estAdjacenteA(int caseId)
 	{
 		return this.casesAdjacentes.contains((Integer)caseId);
 	}
 
-	/** Ajoute une galère */
+	/** Ajoute une galère sur la case */
 	public boolean ajouterGalere(Galere galere)
 	{
 		return this.galeres.add(galere);
 	}
 
-	/** Supprime une galère */
+	/** Enlève un galère de la case */
 	public boolean enleverGalere(Galere galere)
 	{
 		return this.galeres.remove(galere);

@@ -10,11 +10,17 @@ public class Ville implements IPionConteneur
 	/** Identifiant associé à la ville */
 	private int id;
 
+	/** Identifiant associé à la case de la ville */
+	private int caseId;
+
 	/** Nom de la ville */
 	private String nom;
 
 	/** Type de marchandise produit */
 	private EnumMarchandise marchandiseProduite;
+
+	/** Taille de l'entrepôt */
+	private int tailleEntrepot;
 
 	/** Marchandises dans la ville */
 	private ArrayList<Marchandise> marchandises = new ArrayList<Marchandise>();
@@ -22,26 +28,64 @@ public class Ville implements IPionConteneur
 	/** Marins dans la ville */
 	private ArrayList<Marin> marins = new ArrayList<Marin>(); 
 
-	Ville(int id, String nom, EnumMarchandise marchandiseProduite)
+	/** Ville fortifiée */
+	private boolean fortifiee = false;
+
+	Ville(int id, int caseId, String nom, EnumMarchandise marchandiseProduite, int tailleEntrepot)
 	{
 		this.id = id;
+		this.caseId = caseId;
 		this.nom = nom;
 		this.marchandiseProduite = marchandiseProduite;
+		this.tailleEntrepot = tailleEntrepot;
+	}
+
+	public int getCaseId()
+	{
+		return this.caseId;
+	}
+
+	/** Enrôler des marins */
+	public boolean enrolerMarin(int nombreMarin)
+	{
+		if(nombreMarin <= marchandises.size())
+		{
+			for(int i=1; i<=nombreMarin; i++)
+				this.marins.add(new Marin(this.civilisation));
+			return true;
+		}
+		return false;
+	}
+
+	/** Renvoie true si la ville est fortifiée */
+	public boolean estFortifiee()
+	{
+		return this.fortifiee;
+	}
+
+	/** Fortifier la ville */
+	public void fortifier()
+	{
+		this.fortifiee = true;
 	}
 
 	@Override
-	public boolean peutRecevoirPion()
+	public boolean peutRecevoirPion(Pion pion)
 	{
-		return marchandises.size() + marins.size() <= 5;
+		if (pion instanceof Marchandise)
+			return this.marchandises.size() <= this.tailleEntrepot;
+		else if(pion instanceof Marin)
+			return true;
+		return false;
 	}
 
 	@Override
 	public boolean ajouterPion(Pion pion)
 	{
 		if (pion instanceof Marchandise)
-			return peutRecevoirPion() ? marchandises.add((Marchandise) pion) : false;
+			return peutRecevoirPion(pion) ? marchandises.add((Marchandise) pion) : false;
 		else if(pion instanceof Marin)
-			return peutRecevoirPion() ? marins.add((Marin) pion) : false;
+			return peutRecevoirPion(pion) ? marins.add((Marin) pion) : false;
 		return false;
 	}
 

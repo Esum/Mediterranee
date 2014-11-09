@@ -16,19 +16,28 @@ public class Galere implements IPionConteneur
 	/** Marins sur la galère */
 	private ArrayList<Marin> marins = new ArrayList<Marin>();
 
-	/** Déplace la galère vers caseDestination */
-	public void deplacer(int caseDestination)
+	Galere(int caseId, EnumCivilisation civilisation)
+	{
+		this.caseId = caseId;
+		this.civilisation = civilisation;
+	}
+
+	/** Déplace la galère vers caseDestination 
+	 * @return */
+	public boolean deplacer(int caseDestination)
 	{
 		if (Cases.casesList[caseId].estAdjacenteA(caseDestination))
 		{
 			Cases.casesList[caseId].enleverGalere(this);
 			Cases.casesList[caseDestination].ajouterGalere(this);
 			this.caseId = caseDestination;
+			return true;
 		}
+		return false;
 	}
 
 	@Override
-	public boolean peutRecevoirPion()
+	public boolean peutRecevoirPion(Pion pion)
 	{
 		return marchandises.size() + marins.size() <= 5;
 	}
@@ -37,9 +46,9 @@ public class Galere implements IPionConteneur
 	public boolean ajouterPion(Pion pion)
 	{
 		if (pion instanceof Marchandise)
-			return peutRecevoirPion() ? marchandises.add((Marchandise) pion) : false;
+			return peutRecevoirPion(pion) ? marchandises.add((Marchandise) pion) : false;
 		else if(pion instanceof Marin)
-			return peutRecevoirPion() ? marins.add((Marin) pion) : false;
+			return peutRecevoirPion(pion) ? marins.add((Marin) pion) : false;
 		return false;
 	}
 

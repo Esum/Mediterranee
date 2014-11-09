@@ -1,7 +1,5 @@
 package esum.mediterranee.src;
 
-import java.util.ArrayList;
-
 public enum EnumCivilisation
 {
 	AUCUN (-1),
