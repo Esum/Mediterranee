@@ -40,6 +40,7 @@ public class Ville implements IPionConteneur
 		this.tailleEntrepot = tailleEntrepot;
 	}
 
+	/** Renvoie l'identifiant associé à la case de la ville */
 	public int getCaseId()
 	{
 		return this.caseId;
@@ -48,9 +49,10 @@ public class Ville implements IPionConteneur
 	/** Enrôler des marins */
 	public boolean enrolerMarin(int nombreMarin)
 	{
-		if(nombreMarin <= marchandises.size())
+		if(nombreMarin <= marchandises.size() && Joueur.getJoueur(this.civilisation.getId()).getDucats() >= 100*nombreMarin)
 		{
 			for(int i=1; i<=nombreMarin; i++)
+				Joueur.getJoueur(this.civilisation.getId()).enleverDucats(100);
 				this.marins.add(new Marin(this.civilisation));
 			return true;
 		}

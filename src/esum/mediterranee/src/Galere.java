@@ -22,8 +22,7 @@ public class Galere implements IPionConteneur
 		this.civilisation = civilisation;
 	}
 
-	/** Déplace la galère vers caseDestination 
-	 * @return */
+	/** Déplace la galère vers caseDestination */
 	public boolean deplacer(int caseDestination)
 	{
 		if (Cases.casesList[caseId].estAdjacenteA(caseDestination))

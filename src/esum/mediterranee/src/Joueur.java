@@ -1,6 +1,6 @@
 package esum.mediterranee.src;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Joueur
 {
@@ -10,38 +10,63 @@ public class Joueur
 	/** Nom du joueur */
 	private String nom;
 
+	/** Nombre de ducats du joueur */
+	private int ducats;
+
 	/** Liste des joueurs */
-	private static ArrayList<Joueur> joueurs = new ArrayList<Joueur>();
+	private static HashMap<Integer, Joueur> joueurs = new HashMap<Integer, Joueur>();
 
 	Joueur(String nom, EnumCivilisation civilisation)
 	{
 		this.nom = nom;
 		this.civilisation = civilisation;
+		this.ducats = 2000;
 	}
 
-	/** Ajoute un joueur */
-	public static boolean ajouterJoueur(Joueur joueur)
+	Joueur(String nom, EnumCivilisation civilisation, int ducats)
 	{
-		String nom = joueur.getNom();
-		boolean nameUsed = false;
-		for(Joueur j : joueurs)
-			nameUsed = j.getNom() == nom || nameUsed;
-		return (joueurs.size() <= 4 && !nameUsed) ? joueurs.add(joueur) == true : false;
-	}
-
-	/** Supprime un joueur */
-	public static boolean enleverJoueur(String nom)
-	{
-		boolean r = false;
-		for(Joueur joueur : joueurs)
-			r = (joueur.getNom() == nom ? joueurs.remove(joueur) : false) || r;
-		return r;
+		this.nom = nom;
+		this.civilisation = civilisation;
+		this.ducats = ducats;
 	}
 
 	/** Renvoie le joueur à l'index spécifié */
 	public static Joueur getJoueur(int index)
 	{
 		return joueurs.get(index);
+	}
+
+	/** Modifier un joueur */
+	public static boolean setJoueur(Joueur joueur)
+	{
+		String nom = joueur.getNom();
+		boolean nameUsed = false;
+		for (int i=0; i<=joueurs.keySet().size(); i++)
+			nameUsed = joueurs.get(i).getNom() == nom || nameUsed;
+		if (!nameUsed)
+		{
+			joueurs.put(joueur.getCivilisation().getId(), joueur);
+			return true;
+		}
+		return false;
+	}
+
+	/** Supprime le joueur avec la civilisation spécifié */
+	public static boolean enleverJoueur(EnumCivilisation civilisation)
+	{
+		boolean r = false;
+		for (int i=0; i<=joueurs.keySet().size(); i++)
+			r = (joueurs.get(i).getCivilisation().getId() == civilisation.getId() ? joueurs.remove(i) instanceof Joueur : false) || r;
+		return r;
+	}
+
+	/** Supprime le joueur avec le nom spécifié */
+	public static boolean enleverJoueur(String nom)
+	{
+		boolean r = false;
+		for (int i=0; i<=joueurs.keySet().size(); i++)
+			r = (joueurs.get(i).getNom() == nom ? joueurs.remove(i) instanceof Joueur : false) || r;
+		return r;
 	}
 
 	/** Renvoie la civilisation du joueur */
@@ -54,5 +79,21 @@ public class Joueur
 	public String getNom()
 	{
 		return this.nom;
+	}
+
+	/** Renvoie le nombre de ducats du joueur */
+	public int getDucats()
+	{
+		return this.ducats;
+	}
+
+	public boolean enleverDucats(int ducats)
+	{
+		if (this.ducats >= ducats)
+		{
+			this.ducats -= ducats;
+			return true;
+		}
+		return false;
 	}
 }
